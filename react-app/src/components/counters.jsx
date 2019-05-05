@@ -1,20 +1,27 @@
 import React, { Component } from "react";
 import Counter from "./counter";
+import Button from "@material-ui/core/Button";
 
 class Counters extends Component {
   render() {
-    const { onReset, counters, onDelete, onIncrement } = this.props;
+    const { counters } = this.props;
 
     return (
       <div>
-        <button onClick={onReset} className="btn btn-primary btn-sm m-2">
-          Reset
-        </button>
+        {
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.props.onReset}
+          >
+            Reset
+          </Button>
+        }
         {counters.map(counter => (
           <Counter
             key={counter.id}
-            onDelete={onDelete}
-            onIncrement={onIncrement}
+            onIncrement={this.props.onIncrement}
+            onDelete={this.props.onDelete}
             counter={counter}
           />
         ))}

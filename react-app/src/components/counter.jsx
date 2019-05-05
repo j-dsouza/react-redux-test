@@ -1,33 +1,32 @@
 import React, { Component } from "react";
+import Button from "@material-ui/core/Button";
+import Chip from "@material-ui/core/Chip";
 
 class Counter extends Component {
   render() {
-    console.log(this.props);
-
     return (
       <div>
-        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button
-          onClick={() => this.props.onIncrement(this.props.counter)}
-          className={"btn btn-secondary btn-sm"}
+        <Chip color={this.getBadgeColor()} label={this.formatCount()} />
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => this.props.onIncrement(this.props.counter.id)}
         >
           Increment
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="outlined"
+          color="secondary"
           onClick={() => this.props.onDelete(this.props.counter.id)}
-          className="btn btn-danger btn-sm m-2"
         >
           Delete
-        </button>
+        </Button>
       </div>
     );
   }
 
-  getBadgeClasses() {
-    let classes = "badge m-2 ";
-    classes +=
-      this.props.counter.value === 0 ? "badge-warning" : "badge-primary";
-    return classes;
+  getBadgeColor() {
+    return this.props.counter.value === 0 ? "" : "primary";
   }
 
   formatCount() {

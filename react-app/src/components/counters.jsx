@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import Counter from "./counter";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 
 class Counters extends Component {
   render() {
     const { counters } = this.props;
 
     return (
-      <div>
-        {
+      <Grid container spacing={16}>
+        <Grid item xs={12}>
           <Button
             variant="contained"
             color="primary"
@@ -16,16 +17,18 @@ class Counters extends Component {
           >
             Reset
           </Button>
-        }
+        </Grid>
         {counters.map(counter => (
-          <Counter
-            key={counter.id}
-            onIncrement={this.props.onIncrement}
-            onDelete={this.props.onDelete}
-            counter={counter}
-          />
+          <Grid item xs={12} key={counter.id}>
+            <Counter
+              key={counter.id}
+              onIncrement={this.props.onIncrement}
+              onDelete={this.props.onDelete}
+              counter={counter}
+            />
+          </Grid>
         ))}
-      </div>
+      </Grid>
     );
   }
 }
